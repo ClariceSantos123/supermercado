@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contato - Supermercado Bom Preço</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Supermercado Bom Preço</h1>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="produtos.html">Produtos</a>
+      <a href="contato.html">Contato</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Entre em contato conosco</h2>
+    <form id="form-contato">
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="mensagem">Mensagem:</label>
+      <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
+
+      <button type="submit">Enviar</button>
+    </form>
+
+    <p id="resposta"></p>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Supermercado Bom Preço</p>
+  </footer>
+</body>
+</html>
+js/script.js
+// Validação simples do formulário de contato
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("form-contato");
+  const resposta = document.getElementById("resposta");
+
+  if (form) {
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      let nome = document.getElementById("nome").value.trim();
+      let email = document.getElementById("email").value.trim();
+      let mensagem = document.getElementById("mensagem").value.trim();
+
+      if (nome === "" || email === "" || mensagem === "") {
+        resposta.style.color = "red";
+        resposta.innerText = "Por favor, preencha todos os campos.";
+        return;
+      }
+
+      resposta.style.color = "green";
+      resposta.innerText = `Obrigado, ${nome}! Sua mensagem foi enviada com sucesso. Retornaremos no email ${email}.`;
+
+      form.reset(); // limpa o formulário
+    });
+  }
+});
